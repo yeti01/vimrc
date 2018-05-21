@@ -1,24 +1,22 @@
 " ----------------------------------------------------------------------------
-" 15 tabs and indenting
+" 14 tabs and indenting
 " ----------------------------------------------------------------------------
-set tabstop=8           " number of spaces a <Tab> in the text stands for
-set shiftwidth=4        " number of spaces used for each step of (auto)indent
-set softtabstop=4       " if non-zero, number of spaces to insert for a <Tab>
-set expandtab           " expand <Tab> to spaces in Insert mode
-set cindent             " enable specific indenting for C code
+setlocal tabstop=8      " number of spaces a <Tab> in the text stands for
+setlocal shiftwidth=4   " number of spaces used for each step of (auto)indent
+setlocal softtabstop=4  " if non-zero, number of spaces to insert for a <Tab>
+setlocal expandtab      " expand <Tab> to spaces in Insert mode
 
 " ----------------------------------------------------------------------------
-" 19 running make and jumping to errors
+" Select compiler
 " ----------------------------------------------------------------------------
-if has("win32")
-    " list of formats for error messages
-    set errorformat+=LINK\ :\ fatal\ %m\ '%f'
-    set errorformat+=NMAKE\ :\ fatal\ %m
-    set errorformat+=%f\ :\ fatal\ %m
+if executable("cl.exe")
+    compiler msvc
+else
+    compiler gcc
 endif
 
 " ----------------------------------------------------------------------------
 " Keyboard mapping
 " ----------------------------------------------------------------------------
-nmap <F9> :make<CR>
+nmap <buffer><silent><F9> :make<CR>
 " vim:ts=8:sw=4:sts=4:et:ff=unix

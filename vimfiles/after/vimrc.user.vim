@@ -15,22 +15,45 @@ exe "set path+=".path_save
 set tags+=$HOME/Sites/myProject/tags
 
 " ----------------------------------------------------------------------------
+" 5 syntax and highlighting
+" ----------------------------------------------------------------------------
+colorscheme default
+
+" ----------------------------------------------------------------------------
 " 9 GUI
 " ----------------------------------------------------------------------------
 if has("gui_running") && has("win32")
-    set guifont=Lucida_Console:h8
+    set guifont=Lucida_Console:h8       
+    set linespace=3     " number of pixel lines to use between characters
 endif
 
 " ----------------------------------------------------------------------------
-" Events
+" 10 printing
 " ----------------------------------------------------------------------------
-if has("autocmd") && has("eval")
+" font to be used for :hardcopy
+set printfont=Courier:h10
 
-autocmd! FileType *
-    \ let g:ftplugin_file="$VIM/vimfiles/after/ftplugin/".&filetype.".vim" |
-    \ if filereadable(expand(g:ftplugin_file)) |
-    \     execute "source ".g:ftplugin_file |
-    \ endif
-
+" ----------------------------------------------------------------------------
+" Keyboard mapping
+" ----------------------------------------------------------------------------
+if has("eval")
+    let mapleader=","
 endif
+
+" ----------------------------------------------------------------------------
+" Netrw plugin
+" ----------------------------------------------------------------------------
+" comma separated pattern list for hiding files
+let g:netrw_list_hide=g:netrw_list_hide.',\.DS_Store'
+
+" ----------------------------------------------------------------------------
+" Grep plugin
+" ----------------------------------------------------------------------------
+" list of directories to skip while doing recursive searches
+let Grep_Skip_Dirs=
+    \'CVS .svn build .metadata'
+
+" files in which to search for the pattern
+let Grep_Default_Filelist=
+    \'*.cpp *.hpp *.c *.h *.m *.java *.js *.php *.phtml *.html *.xml *.css'
 " vim:ts=8:sw=4:sts=4:et:ff=unix

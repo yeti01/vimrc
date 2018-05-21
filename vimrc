@@ -29,11 +29,18 @@ set number              " show the line number for each line
 " ----------------------------------------------------------------------------
 " 5 syntax and highlighting
 " ----------------------------------------------------------------------------
-set nohlsearch          " highlight matches for current search pattern (no)
+set nohlsearch          " highlight matches for last used search pattern (no)
+
+if has("langmap")
+    try
+        language messages en_US.UTF-8
+        language time en_US
+    catch
+    endtry
+endif
 
 if has("autocmd")
-    let myfiletypefile="$VIM/vimfiles/filetype.vim"
-    filetype on
+    filetype plugin indent on
 endif
 
 if has("syntax")
@@ -58,6 +65,8 @@ set statusline+=%m
 set statusline+=%r
 " fileformat
 set statusline+=[%{&ff}]
+" fileencoding
+set statusline+=[%{(&fenc!=''?&fenc:&enc).(&bomb?'-bom':'')}]
 " separation point between left and right aligned items
 set statusline+=%=
 " value of byte under cursor (hexadecimal)
@@ -78,49 +87,71 @@ if has("mouse")
 endif
 
 " ----------------------------------------------------------------------------
-" 10 messages and info
+" 10 printing
+" ----------------------------------------------------------------------------
+" items that control the format of :hardcopy
+set printoptions=header:0,syntax:n,wrap:n
+
+" ----------------------------------------------------------------------------
+" 11 messages and info
 " ----------------------------------------------------------------------------
 set showcmd             " show (partial) command keys in the status line 
 set novisualbell        " use a visual bell instead of beeping (no)
 
 " ----------------------------------------------------------------------------
-" 11 selecting text
+" 13 selecting text
 " ----------------------------------------------------------------------------
 set selectmode=key      " when to start Select mode instead of Visual mode
 set clipboard=unnamed   " use the * register like unnamed register
 set keymodel=startsel   " what special keys can do
 
 " ----------------------------------------------------------------------------
-" 12 editing text
+" 13 editing text
 " ----------------------------------------------------------------------------
 set undolevels=5000     " maximum number of changes that can be undone
 set textwidth=0         " line length above which to break a line
-set backspace=2         " what <BS> can do in Insert mode
+set backspace=2         " specifies what <BS> CTRL-W etc can do in Insert mode
 set complete=.,w,b,u    " specifies how Insert mode completion works
 set showmatch           " when inserting a bracket, briefly jump to its match
 
 " ----------------------------------------------------------------------------
-" 13 tabs and indenting
+" 14 tabs and indenting
 " ----------------------------------------------------------------------------
 set shiftround          " round to 'shiftwidth' for << and >>
 set autoindent          " automatically set the indent of a new line
 
 " ----------------------------------------------------------------------------
-" 15 reading and writing files
+" 16 diff mode
 " ----------------------------------------------------------------------------
-set nobackup            " keep a backup after overwriting a file (no)
+" options for using diff mode
+if has("diff")
+    set diffopt+=iwhite,context:12
+endif
 
 " ----------------------------------------------------------------------------
-" 17 command line editing 
+" 18 reading and writing files
+" ----------------------------------------------------------------------------
+set nobackup            " keep a backup after overwriting a file (no)
+set autoread            " automatically read a file when modified outside
+
+" ----------------------------------------------------------------------------
+" 20 command line editing 
 " ----------------------------------------------------------------------------
 set history=100         " how many command lines are remembered
 set wildmenu            " command-line completion shows a list of matches
 
 " ----------------------------------------------------------------------------
-" 21 various
+" 25 multi-byte characters
 " ----------------------------------------------------------------------------
-" list that specifies what to write in the viminfo file
-set viminfo='20,\"50,h
+if has("multi_byte")
+    set encoding=utf-8          " character encoding used in Vim
+    set termencoding=utf-8      " character encoding used by the terminal
+endif
+
+" ----------------------------------------------------------------------------
+" 26 various
+" ----------------------------------------------------------------------------
+set virtualedit=block   " when to use virtual editing
 
 " ----------------------------------------------------------------------------
 " Keyboard mapping
@@ -136,11 +167,11 @@ set viminfo='20,\"50,h
 " :cmap      -          -          -          -          X
 " ----------------------------------------------------------------------------
 " save file
-nmap <F2>               :update<CR>
-imap <F2>               <C-O>:update<CR>
+nmap <silent><F2>       :update<CR>
+imap <silent><F2>       <C-O>:update<CR>
 
 " open/browse files
-nmap <F3>               :call ExplInitiate(0)<CR>
+nmap <F3>               :edit .<CR>
 
 " toggle some settings
 nmap <F4>               :set wrap!<CR>:set wrap?<CR>
@@ -148,12 +179,19 @@ nmap <F5>               :set ignorecase!<CR>:set ignorecase?<CR>
 nmap <F6>               :set hlsearch!<CR>:set hlsearch?<CR>
 
 " jump to tag
-nmap <C-]>              g<C-]>
-nmap <C-LeftMouse>      g<C-]>
+nnoremap <C-]>          g<C-]>
+nnoremap <C-LeftMouse>  g<C-]>
 
 " search for selected text
-vmap *                  y/<C-R>=escape(@",'\\/.*~[]')<CR><CR>
-vmap #                  y?<C-R>=escape(@",'\\/.*~[]')<CR><CR>
+vnoremap *              y/<C-R>=escape(@",'\\/.*~[]')<CR><CR>
+vnoremap #              y?<C-R>=escape(@",'\\/.*~[]')<CR><CR>
+
+" undo/redo with blocks
+inoremap <C-U>          <C-G>u<C-U>
+inoremap <C-W>          <C-G>u<C-W>
+inoremap <Space>        <Space><C-G>u
+inoremap <Tab>          <Tab><C-G>u
+inoremap <CR>           <CR><C-G>u
 
 " ----------------------------------------------------------------------------
 " Events
@@ -161,23 +199,41 @@ vmap #                  y?<C-R>=escape(@",'\\/.*~[]')<CR><CR>
 if has("autocmd") && has("eval")
 
 " change to directory of file in buffer
-autocmd BufEnter * cd %:p:h
+autocmd BufEnter * silent! lcd %:p:h
+
+endif
+
+" ----------------------------------------------------------------------------
+" Netrw settings
+" ----------------------------------------------------------------------------
+if has("eval")
+
+" keep the current directory the same as the browsing directory
+let g:netrw_keepdir=0
+
+" long listing will be default
+let g:netrw_longlist=1
+
+" when sorting by name, first sort by the comma-separated pattern sequence
+let g:netrw_sort_sequence='[\/]$'
+
+" comma separated pattern list for hiding files
+let g:netrw_list_hide='\.sw[a-p]'
 
 endif
 
 " ----------------------------------------------------------------------------
 " Runtime scripts
 " ----------------------------------------------------------------------------
-source $VIMRUNTIME/macros/diffwin.vim
-source $VIMRUNTIME/macros/explorer.vim
+runtime macros/matchit.vim
 
 " ----------------------------------------------------------------------------
 " Addon scripts
 " ----------------------------------------------------------------------------
-source $VIM/vimfiles/vimrc.plugin.vim
+runtime vimrc.plugin.vim
 
 " ----------------------------------------------------------------------------
 " User exit
 " ----------------------------------------------------------------------------
-source $VIM/vimfiles/after/vimrc.user.vim
+runtime after/vimrc.user.vim
 " vim:ts=8:sw=4:sts=4:et:ff=unix
