@@ -1,4 +1,20 @@
 # A sample of a vim configuration
+
+[vim]: http://vim.org
+
+### Introduction
+Using [vim] out of the box might be nice for a purist but you sure want some customizing to make your work easier.
+
+vim offers you a lot of settings to change. And even better, there are lots of awesome plugins available to extend the functionality of vim. But keep in mind that sometimes "less is more".
+
+With this collection of configuration files, I tried:
+
+* Not to overwrite standard funtionality of vim.
+* To keep `vimrc` small and clean.
+* To use vim's standard concepts as much as possible.
+
+I would give me great pleasure if you find solutions for your own config here or use this config as a whole.
+
 ### Installation
 If you like a system wide configuration, simply put the directory `vimfiles` and the 2 runtime config files `vimrc` and `gvimrc` to a common place that depends on your OS.
 
