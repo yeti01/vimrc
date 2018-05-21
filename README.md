@@ -13,7 +13,7 @@ With this collection of configuration files, I tried:
 * To keep `vimrc` small and clean.
 * To use vim's standard concepts as much as possible.
 
-I would give me great pleasure if you find solutions for your own config here or use this config as a whole.
+It would give me great pleasure if you find solutions for your own config here or use this config as a whole.
 
 ### Installation
 If you like a system wide configuration, simply put the directory `vimfiles` and the 2 runtime config files `vimrc` and `gvimrc` to a common place that depends on your OS.
