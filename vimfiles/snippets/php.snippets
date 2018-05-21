@@ -1,0 +1,162 @@
+# PHP Snippets
+snippet php
+	<?php
+	${1}
+	?>
+snippet echo
+	echo "${1:string}"${2};
+snippet include
+	include '${1:file}';${2}
+snippet include_once
+	include_once '${1:file}';${2}
+snippet require
+	require '${1:file}';${2}
+snippet require_once
+	require_once '${1:file}';${2}
+snippet globals
+	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
+snippet $_ COOKIE['...']
+	$_COOKIE['${1:variable}']${2}
+snippet $_ ENV['...']
+	$_ENV['${1:variable}']${2}
+snippet $_ FILES['...']
+	$_FILES['${1:variable}']${2}
+snippet $_ GET['...']
+	$_GET['${1:variable}']${2}
+snippet $_ POST['...']
+	$_POST['${1:variable}']${2}
+snippet $_ REQUEST['...']
+	$_REQUEST['${1:variable}']${2}
+snippet $_ SERVER['...']
+	$_SERVER['${1:variable}']${2}
+snippet $_ SESSION['...']
+	$_SESSION['${1:variable}']${2}
+snippet /*
+	/**
+	 * ${1}
+	 **/
+snippet	class
+	class ${1:`Filename()`}
+	{
+		${2}
+	}
+snippet interface
+	interface ${1:`Filename()`}
+	{
+		${2}
+	}
+snippet function
+	function ${1}(${2})
+	{
+		${3}
+	}
+snippet method
+	${1:protected} function ${2:foo}()
+	{
+		${3}
+	}
+snippet define
+	define('${1}'${2});${3}
+snippet defined
+	${1}defined('${2}')${3}
+snippet while
+	while (${1:/* condition */})
+	{
+		${2:// code...}
+	}
+snippet do
+	do
+	{
+		${2:// code... }
+	} while (${1:/* condition */});
+snippet if
+	if (${1:/* condition */})
+	{
+		${2:// code...}
+	}
+snippet elseif
+	elseif (${1:/* condition */})
+	{
+		${2:// code...}
+	}
+snippet else
+	else
+	{
+		${1:// code...}
+	}
+snippet ?
+	${1:/* condition */} ? ${2:a} : ${3:b}
+snippet switch
+	switch ($${1:variable})
+	{
+		case '${2:value}':
+			${3:// code...}
+			break;
+		${5}
+		default:
+			${4:// code...}
+			break;
+	}
+snippet case
+	case '${1:value}':
+		${2:// code...}
+		break;${3}
+snippet for
+	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++})
+	{
+		${4: // code...}
+	}
+snippet foreach
+	foreach ($${1:variable} as $${2:key}${3: => $value})
+	{
+		${4}
+	}
+snippet array
+	$${1:arrayName} = array('${2}' => ${3});${4}
+snippet namespace
+	namespace ${1:Foo\Bar\Baz};
+	${2}
+snippet use
+	use ${1:Foo\Bar\Baz};
+	${2}
+snippet this
+	$this->
+snippet set
+	${1:public} function set${2:Var}($${3:value})
+	{
+		$this->${4:$2} = $$3;
+	}
+snippet get
+	${1:public} function get${2}()
+	{
+		return $this->${3:$2};
+	}
+snippet try
+	try
+	{
+		${2}
+	}
+	catch (${1:Exception} $e)
+	{
+	}
+snippet var_dump
+	var_dump(${1});
+snippet print_r
+	print_r(${1});
+snippet error_log
+	error_log(print_r($${1:foo}, true), 3, '${2:/tmp/debug.log}');
+snippet http_redirect
+	header ("HTTP/1.1 301 Moved Permanently");
+	header ("Location: ".URL);
+	exit();
+snippet array_map
+	$${1:foo} = array_map(function($${2:v})
+	{
+		${3}
+		return $$2;
+	}, $$1);
+snippet array_walk
+	array_walk($${1:foo}, function(&$${2:v}, $${3:k})
+	{
+		$$2 = ${4};
+	});

@@ -1,0 +1,49 @@
+# AWK Snippets
+snippet begin
+	BEGIN {
+		FS = "${1:;}"${2}
+	}
+snippet loop
+	${1:/pattern/ }{
+		${2}
+	}
+snippet end
+	END {
+		${1}
+	}
+snippet if
+	if (${1:/* condition */})
+	{
+		${2:/* code */}
+	}
+snippet else
+	else
+	{
+		${1}
+	}
+snippet while
+	while (${1:/* condition */})
+	{
+		${2:/* code */}
+	}
+snippet for
+	for (${2:i} = 0; $2 < ${1:count}; $2${3:++})
+	{
+		${4:/* code */}
+	}
+snippet do
+	do
+	{
+		${2:/* code */}
+	} while (${1:/* condition */})
+snippet print
+	print "${1}"${2}
+snippet printf
+	printf("${1:%s}\n"${2})${3}
+snippet function
+	${1:function_name}(${2})
+	{
+		${3:/* code */}
+	}
+snippet .
+	[${1}]${2}

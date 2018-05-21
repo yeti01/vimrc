@@ -1,0 +1,21 @@
+# PHTML Snippets
+snippet echo
+	<?php echo ${1} ?>
+snippet =
+	<?=${1}?>
+snippet ?=
+	<?= ${1} ?>
+snippet ?
+	<?php ${1} ?>
+snippet foreach
+	<?php foreach ($${1:vars} as $${2:$var}): ?>
+		${3}
+	<?php endforeach ?>
+snippet if
+	<?php if (${1:/* condition */}): ?>
+		${2}
+	<?php endif; ?>
+snippet else
+	<?php else: ?>
+		${1:<!-- html... -->}
+	<?php endif; ?>

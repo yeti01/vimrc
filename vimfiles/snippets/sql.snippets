@@ -1,0 +1,26 @@
+# SQL Snippets
+snippet select
+	SELECT * FROM ${1:table} WHERE ${2:field = value};
+snippet select timestamp (ORACLE)
+	SELECT * FROM ${1:table} VERSIONS BETWEEN TIMESTAMP 
+	${3:MINVALUE}
+	AND
+	${4:MAXVALUE}
+	 WHERE ${2:field = value};
+snippet insert
+	INSERT INTO ${1:table} (${2:column1}, ${4:column2})
+	VALUES (${3:value1}, ${5:value2});
+snippet create CREATE TABLE
+	CREATE TABLE ${1:table} (
+		${2:column1} VARCHAR2(10 CHAR),
+		${3:column2} NUMBER(10) DEFAULT 0,
+		${4:column3} NUMBER(11,3) DEFAULT 0.0
+	);
+snippet create CREATE INDEX
+	CREATE INDEX ${3:$1_$2} ON ${1:table}.${2:column};
+snippet drop
+	DROP TABLE ${1:table};
+snippet alter ALTER TABLE ADD
+	ALTER TABLE ${1:table} ADD (${2:column} ${3:type});
+snippet alter ALTER TABLE MODIFY
+	ALTER TABLE ${1:table} MODIFY (${2:column} ${3:type});

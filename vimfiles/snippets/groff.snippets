@@ -1,0 +1,24 @@
+# Troff Groff Snippets
+snippet article
+	.TL
+	${1:Title}
+	.AU
+	${2:Author}
+	.AI
+	${3:Author's Institute}
+	.AB
+	${4:Abstract}
+	.AE
+	.LP
+	.NH
+	${5:Section}
+	.LP
+	${6:Text}
+snippet box
+	.B1
+	${1:Text}
+	.B2
+snippet eqn
+	.EQ I ${1:(1)}
+	${1:y=x}
+	.EN

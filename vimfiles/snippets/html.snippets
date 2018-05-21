@@ -1,0 +1,94 @@
+# HTML/XHTML Snippets
+snippet doctype HTML 4.01 Transitional
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+snippet doctype XHTML 1.0 Transitional
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+snippet doctype HTML 5
+	<!DOCTYPE HTML>
+	${1}
+snippet html HTML
+	<html>
+		${1}
+	</html>
+snippet html XHTML
+	<html xmlns="http://www.w3.org/1999/xhtml">
+		${1}
+	</html>
+snippet head
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"`Close()`>
+		<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+	</head>
+	${2}
+snippet base
+	<base href="${1}"`Close()`>
+snippet meta
+	<meta name="${1:name}" content="${2:content}"`Close()`>${3}
+snippet style
+	<style type="text/css" media="${1:screen}">
+		${2}
+	</style>${3}
+snippet css
+	<link rel="${1:stylesheet}" href="${2:css/master.css}" type="text/css" media="${3:screen}" charset="utf-8"`Close()`>${4}
+snippet body
+	<body>
+		${1}
+	</body>
+snippet javascript
+	<script type="text/javascript" charset="utf-8">
+		${1}
+	</script>${2}
+snippet js
+	<script src="${1}.js" type="text/javascript" charset="utf-8"></script>${2}
+snippet img
+	<img src="${1:images/logo.png}"`Close()`>${2}
+snippet div
+	<div id="${1:name}"}>
+		${2}
+	</div>
+snippet span
+	<span id="${1:name}"}>${2}</span>
+snippet id
+	id="${1}"${2}
+snippet class
+	class="${1}"${2}
+snippet list unordered
+	<ul>
+		<li>${1}</li>
+	</ul>
+snippet list ordered
+	<ol>
+		<li>${1}</li>
+	</ol>
+snippet table
+	<table border="${1:0}">
+		<tr>
+			<th>${2:Header}</th>
+		</tr>
+		<tr>
+			<th>${3:Data}</th>
+		</tr>
+	</table>${4}
+snippet link
+	<a href="${1:index.html}">${2:Main}</a>
+snippet h1
+	<h1>${1}</h1>
+snippet form
+	<form action="" method="${1:GET|POST}" accept-charset="utf-8">
+		<label for="${3:$2}">${2:name}</label>
+		<input type="${4:text|submit|hidden|button}" name="${5:$3}" value="${6}" id="${7:$3}"`Close()`>${8}
+	</form>
+snippet fieldset
+	<fieldset id="">
+		<legend>${1:name}</legend>
+	</fieldset>
+snippet select
+	<select name="${1:name}" id="${2:$1}">
+		<option value="${3:value}">${4:$3}</option>${5}
+	</select>
+snippet mailto
+	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
+snippet textarea
+	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}

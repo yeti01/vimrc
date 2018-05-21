@@ -1,0 +1,49 @@
+# Pascal Snippets
+snippet for
+	for ${1:i} := ${2:0} to ${3:count} do
+	begin
+		${4:(* code *)}
+	end;
+snippet try
+	try
+	
+	except
+	on E:Exception do
+		writeln(E.Classname, ': ', E.Message);
+	end;
+snippet ifdef
+	{$IFDEF PCRE_LINKDLL}
+		{$DEFINE PCRE_EXPORT_CDECL}
+	{$ELSE}
+	{$ENDIF}
+snippet procedure
+	procedure ${1}(${2});
+	begin
+		${3}
+	end;
+snippet function
+	function ${1}(${2}):${3};
+	begin
+		result := ${4};
+	end;
+snippet if
+	if ${1} then${2}
+snippet while
+	while ${1} do${2}
+snippet begin
+	begin
+		${1}
+	end;
+snippet class
+	T${1} = class(TComponent)
+	private
+		
+	protected
+		
+	public
+		
+	published
+		
+	end;
+snippet .
+	[${1}]${2}

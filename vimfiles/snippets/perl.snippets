@@ -1,0 +1,72 @@
+# Perl Snippets
+snippet #!
+	#!/usr/bin/perl
+
+snippet .
+	 =>
+snippet sub
+	sub ${1:function_name}
+	{
+		${2:#body ...}
+	}
+snippet if
+	if (${1})
+	{
+		${2:# body...}
+	}
+snippet elsif
+	elsif (${1})
+	{
+		${2:# elsif...}
+	}
+snippet else
+	else
+	{
+		${1:# else...}
+	}
+snippet unless
+	unless (${1})
+	{
+		${2:# body...}
+	}
+snippet eval
+	eval
+	{
+		${1:# do something risky...}
+	};
+	if ($@)
+	{
+		${2:# handle failure...}
+	}
+snippet while
+	while (${1})
+	{
+		${2:# body...}
+	}
+snippet for
+	for (my $${2:var} = 0; $$2 < ${1:count}; $$2${3:++})
+	{
+		${4:# body...}
+	}
+snippet foreach
+	foreach my $${1:x} (@${2:array})
+	{
+		${3:# body...}
+	}
+snippet class
+	package ${1:ClassName};
+
+	use base qw(${2:ParentClass});
+
+	sub new
+	{
+		my $class = shift;
+		$class = ref $class if ref $class;
+		my $self = bless {}, $class;
+		$self;
+	}
+
+	1;${3}
+snippet slurp
+	my $${1:var};
+	{ local $/ = undef; local *FILE; open FILE, "<${2:file}"; $$1 = <FILE>; close FILE }${3}

@@ -1,0 +1,77 @@
+# C++ Snippets
+snippet #include <...>
+	#include <${1:iostream}>${2}
+snippet namespace
+	using namespace ${1:std};
+	${2}
+snippet class
+	class ${1:`Filename('$1', 'name')`}${2: : public Parent}
+	{
+	public:
+		$1(${3:void});
+		virtual ~$1();
+	
+	private:
+		${4:}
+	};
+
+	$1::$1()
+	{
+	}
+
+	$1::~$1()
+	{
+	}
+snippet method
+	${4:void} ${1:`Filename('$1', 'name')`}::${2:method}(${3})
+	{
+		${5}
+	}
+snippet cout
+	cout << ${1} << endl;
+snippet cin
+	cin >> ${1};
+snippet try
+	try
+	{
+		${3}
+	}
+	catch (${1:exception&} ${2:e})
+	{
+		${4}
+	}
+snippet throw
+	throw exception();
+snippet vector
+	vector<${1:int}> ${2:v};
+snippet list
+	list<${1:int}> ${2:l};
+snippet map
+	map<${1:int}, ${2:char}> ${3:m};
+snippet pair
+	pair<${1:int}, ${2:char}>(${3}, ${4})
+snippet for foreach
+	for (${1:auto} ${2:i} : ${3:container})
+	{
+		${4}
+	}
+snippet for vector
+	for (vector<${1:int}>::iterator ${2:p} = ${3:v}.begin(); $2 != $3.end(); $2++)
+	{
+		${4}
+	}
+snippet for list
+	for (list<${1:int}, ${2:char}>::iterator ${3:p} = ${4:l}.begin(); $3 != $4.end(); $3++)
+	{
+		${5}
+	}
+snippet for map
+	for (map<${1:int}, ${2:char}>::iterator ${3:p} = ${4:m}.begin(); $3 != $4.end(); $3++)
+	{
+		${5}
+	}
+snippet for auto iterator
+	for (auto ${1:p} = ${2:container}.begin(); $1 != $2.end(); ++$1)
+	{
+		${3:cout << *$1 << endl;}
+	}

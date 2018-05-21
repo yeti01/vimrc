@@ -1,0 +1,41 @@
+# Plant UML Snippets
+snippet uml
+	@startuml
+
+	${1}
+
+	@enduml
+snippet sequence
+	Alice -> Bob: Authentication Request
+	Bob --> Alice: Authentication Response
+	
+	Alice -> Bob: Another authentication Request
+	Alice <-- Bob: another authentication Response
+snippet usecase
+	User -> (Start)
+	User --> (Use the application) : A small label
+	
+	:Main Admin: ---> (Use the application) : This is\nyet another\nlabel
+snippet class
+	Object <|-- ArrayList
+	
+	Object : equals()
+	ArrayList : Object[] elementData
+	ArrayList : size()
+snippet activity
+	(*) --> "First Activity"
+	"First Activity" --> (*)
+snippet component
+	DataAccess - [First Component] 
+	[First Component] ..> HTTP : use
+snippet state
+	[*] --> State1
+	State1 --> [*]
+	State1 : this is a string
+	State1 : this is another string
+	
+	State1 -> State2
+	State2 --> [*]
+snippet object
+	object firstObject
+	object "My Second Object" as o2

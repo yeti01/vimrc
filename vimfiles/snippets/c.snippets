@@ -1,0 +1,118 @@
+# C Snippets
+snippet main args
+	int main(int argc, const char *argv[])
+	{
+		${1}
+		return 0;
+	}
+snippet main void
+	int main(void)
+	{
+		${1}
+		return 0;
+	}
+snippet #include <..h>
+	#include <${1:stdio}.h>${2}
+snippet #include "..."
+	#include "${1:`Filename("$1.h")`}"${2}
+snippet #if #ifndef
+	#ifndef $1
+	#define ${1:SYMBOL} ${2:value}
+	#endif${3}
+snippet #if #ifdef
+	#ifdef ${1:FOO}
+		${2:#define }
+	#endif
+snippet #if #if
+	#if ${1:FOO}
+		${2}
+	#endif
+snippet #if include guard
+	#ifndef ${1:`toupper(Filename('$1_H', 'UNTITLED_H'))`}
+	#define $1
+
+	${2}
+
+	#endif
+snippet /*
+	/*
+	 * ${1}
+	 */
+snippet if
+	if (${1:/* condition */})
+	{
+		${2:/* code */}
+	}
+snippet else
+	else
+	{
+		${1}
+	}
+snippet ?
+	${1:/* condition */} ? ${2:a} : ${3:b}
+snippet switch
+	switch (${1:/* variable */})
+	{
+		case ${2:/* variable case */}:
+			${3}
+			break;
+		default:
+			${4}
+	}
+snippet case
+	case ${1:/* variable case */}:
+		${2}
+		break;
+snippet while
+	while (${1:/* condition */})
+	{
+		${2:/* code */}
+	}
+snippet for
+	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++})
+	{
+		${4:/* code */}
+	}
+snippet do
+	do
+	{
+		${2:/* code */}
+	} while (${1:/* condition */});
+snippet function
+	${1:void} ${2:function_name}(${3})
+	{
+		${4:/* code */}
+	}
+snippet struct
+	struct ${1:`Filename('$1', 'name')`}
+	{
+		${2:/* data */}
+	}${3: /* optional variable list */};${4}
+snippet enum
+	enum ${1:foo}
+	{
+		${2:/* data */}
+	};${3}
+snippet union
+	union ${1:foo}
+	{
+		${2:/* data */}
+	}${3: /* optional variable list */};${4}
+snippet typedef
+	typedef ${1:int} ${2:MyCustomType};${3}
+snippet typedef struct
+	typedef struct ${2:_$1 }
+	{
+		${3:/* data */}
+	} ${1:`Filename('$1', 'name')`};
+snippet typedef enum
+	typedef enum ${2:_$1 }
+	{
+		${3:/* data */}
+	} ${1:foo};
+snippet printf
+	printf("${1:%s}\n"${2});${3}
+snippet fprintf
+	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}
+snippet .
+	[${1}]${2}

@@ -1,0 +1,106 @@
+# Python Snippets
+snippet #!
+	#!/usr/bin/python
+
+snippet import
+	import ${1:module}
+snippet documentation
+	'''
+	File: ${1:`Filename('$1.py', 'foo.py')`}
+	Author: ${2:`g:snips_author`}
+	Description: ${3}
+	'''
+snippet while
+	while ${1:condition}:
+		${2:# code...}
+snippet for
+	for ${1:needle} in ${2:haystack}:
+		${3:# code...}
+snippet class
+	class ${1:ClassName}(${2:object}):
+		"""${3:docstring for $1}"""
+		def __init__(self, ${4:arg}):
+			${5:super($1, self).__init__()}
+			self.$4 = $4
+			${6}
+snippet def
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		"""${3:docstring for $1}"""
+		${4:pass}
+snippet defs
+	def ${1:mname}(self, ${2:arg}):
+		${3:pass}
+snippet property
+	def ${1:foo}():
+		doc = "${2:The $1 property.}"
+		def fget(self):
+			${3:return self._$1}
+		def fset(self, value):
+			${4:self._$1 = value}
+		def fdel(self):
+			del self._$1
+		return locals()
+		$1 = property(**$1())
+snippet lambda
+	${1:var} = lambda ${2:vars} : ${3:action}
+snippet .
+	self.
+snippet try
+	try:
+		${1:pass}
+	except ${2:exception}, ${3:e}:
+		${4:raise $3}
+snippet ifmain
+	if __name__ == '__main__':
+		${1:main()}
+snippet __
+	__${1:init}__${2}
+# Python Snippets II
+snippet unicode
+	def __unicode__(self):
+		${1:representation}
+snippet with
+	with ${1:expr} as ${2:var}:
+		${3}
+snippet if
+	if ${1:condition}:
+		${2}
+snippet else
+	else:
+		${1}
+snippet elif
+	elif ${1:condition}:
+		${2}
+snippet coding utf8
+	# -*- coding: utf-8 -*-
+snippet coding latin1
+	# -*- coding: latin-1 -*-
+snippet coding ascii
+	# -*- coding: ascii -*-
+snippet "
+	"""
+	${2:doc}
+	"""
+snippet assertequal
+	self.assertEqual(${2}, ${1})
+snippet test
+	def test_${1:description}(${2:`indent('.') ? 'self' : ''`}):
+		${3}
+snippet testcase
+	class ${1:ExampleCase}(unittest.TestCase):
+
+		def test_${2:description}(self):
+			${3}
+snippet logger getLogger
+	import logging
+	logger = logging.getLogger(${1:__name__})
+snippet logger error
+	logger.error(${1:msg})
+snippet logger debug
+	logger.debug(${1:msg})
+snippet logger warning
+	logger.warning(${1:msg})
+snippet logger critical
+	logger.critical(${1:msg})
+snippet logger info
+	logger.info(${1:msg})

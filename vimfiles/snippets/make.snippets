@@ -1,0 +1,96 @@
+# Makefile Snipptes
+snippet c gcc
+	CXX = gcc
+	CXXFLAGS = -O2 -g -Wall
+
+	OBJS = ${1:program}.o${2}
+
+	all: $1
+
+	$1: $(OBJS)
+		$(CXX) $(LIBS) $(OBJS) -o $1
+
+	%.o: %.c
+		$(CXX) $(CXXFLAGS) -c $*.c -o $*.o
+
+	clean:
+		rm -f $(OBJS) $1
+snippet c++ gcc
+	CXX = g++
+	CXXFLAGS = -O2 -g -Wall
+
+	OBJS = ${1:program}.o${2}
+
+	all: $1
+
+	$1: $(OBJS)
+		$(CXX) $(LIBS) $(OBJS) -o $1
+
+	%.o: %.cpp
+		$(CXX) $(CXXFLAGS) -c $*.cpp -o $*.o
+
+	clean:
+		rm -f $(OBJS) $1
+snippet c++ MS Visual C++
+	CXX = cl.exe
+	LD = link.exe
+	CXXFLAGS = /c /W4 /EHsc /wd4255
+
+	OBJS = ${1:program}.obj
+
+	all: $1.exe
+
+	$1.exe: $(OBJS)
+		$(LD) $(OBJS) /out:$1.exe
+
+	.cpp.obj:
+		$(CXX) $(CXXFLAGS) $*.cpp
+
+	clean:
+		del $(OBJS) $1.exe
+snippet c++ wxWidgets
+	CXX = \`wx-config --cxx\`
+	CXXFLAGS = -O2 -g -Wall \`wx-config --cxxflags\`
+	LIBS = \`wx-config --libs\`
+
+	OBJS = ${1:program}app.o $1frame.o${2}
+
+	all: $1
+
+	$1: $(OBJS)
+		$(CXX) $(LIBS) $(OBJS) -o $@
+
+	%.o: %.cpp %.h
+		$(CXX) $(CXXFLAGS) -c $< -o $@
+
+	clean:
+		rm -f $(OBJS) $1
+snippet fortran gfortran
+	FC = gfortran
+	FFLAGS = -O -std=legacy
+
+	OBJS = ${1:program}.o
+
+	all: $1
+
+	$1: $(OBJS)
+		$(FC) $(OBJS) -o $1
+
+	%.o: %.f
+		$(FC) -c $(FFLAGS) $*.f -o $*.o 
+
+	clean:
+		rm -f $(OBJS) $1
+snippet pascal free pascal compiler
+	PC = fpc
+	PFLAGS = -O2 -vw
+
+	SRCS = ${1:program}.pas
+
+	all: $1
+
+	$1: $(SRCS)
+		$(PC) $(PFLAGS) $(SRCS)
+
+	clean:
+		rm -f *.o $1

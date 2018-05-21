@@ -7,8 +7,11 @@ if &background=="light"
     highlight DiffDelete        guibg=White
     highlight DiffText          guifg=White
     highlight LineNr            guibg=LightGray guifg=DarkSlateGray
+    highlight CursorLine        guibg=Gray85
+    highlight Visual            guibg=Gray80
 "   highlight StatusLine        gui=NONE,reverse
     highlight StatusLineNC      gui=bold guifg=Gray10 guibg=Gray80
+    highlight Conceal           guibg=White guifg=black
 endif
 
 let g:colors_name="default"

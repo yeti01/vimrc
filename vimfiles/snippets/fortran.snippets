@@ -1,0 +1,49 @@
+# Fortran Snippets
+snippet program
+	      program ${1:name}
+	          implicit none
+	          ${2}
+	      end program $1
+snippet if
+	      if (${1:condition}) then
+	          ${2}
+	      end if
+snippet do
+	      do ${1:i} = ${2:1}, ${3:N}
+	          ${4}
+	      end do
+snippet while
+	      do while (${1:condition})
+	          ${2}
+	      end do
+snippet open
+	      open(unit=${1:10}, file=${2:filename}, ${3})
+	      ${4}
+snippet function
+	      function ${1:name}(${2}) result(${3})
+	          ${4}
+	      end function $1
+snippet subroutine
+	      subroutine ${1:name}(${2})
+	          ${3}
+	      end subroutine $1
+snippet array
+	      ${1:type}subroutine, dimension(${2}) :: ${3}
+snippet const
+	      ${1:type}, parameter :: ${3} =parameter ${4}
+snippet int
+	      integer :: ${1}
+snippet real
+	      real :: ${1}
+snippet logical
+	      logical :: ${1}
+snippet char
+	      character :: ${1}
+snippet string
+	      character(len=${1}character) :: ${2}
+snippet type
+	      type(${1}) :: ${2}type
+snippet write
+	      write (${1:*}, ${2:*}) ${3:variable}
+snippet read 
+	      read (${1:*}, ${2:*}) ${3:target}

@@ -1,0 +1,30 @@
+# Apache Snippets
+snippet dir
+	<Directory ${1:/}>
+		AllowOverride All
+		Order Allow,Deny
+		Allow from All
+	</Directory>
+snippet filesmatch
+	<FilesMatch "${1:regex}">
+		${2}
+	</FilesMatch>
+snippet ifmodule
+	<IfModule ${1:mod_example.c}>
+		${2}
+	</IfModule>
+snippet limitexcept
+	<LimitExcept ${1:POST GET}>
+		${2}
+	</LimitExcept>
+snippet proxy
+	<Proxy ${1:*}>
+		${2}
+	</Proxy>
+snippet virtualhost
+	<VirtualHost ${1:*}:${2:80}>
+		ServerAdmin ${3:webmaster@example.com}
+		DocumentRoot ${4:/www/example.com}
+		ServerName ${5:www.example.com}
+		ServerAlias $5
+	</VirtualHost>

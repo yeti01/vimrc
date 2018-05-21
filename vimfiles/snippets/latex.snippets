@@ -1,0 +1,171 @@
+# LaTeX Snippets
+snippet _article pdfLaTex
+	\documentclass[${1:11}pt,${2:german},parskip=half]{scrartcl}
+	\usepackage[utf8]{inputenc}
+	\usepackage{ngerman} 
+	\usepackage{lmodern,textcomp}
+
+	\title{${3}}
+	\author{${4:`g:snips_author`}}
+	\date{${5:\today}}
+
+	\begin{document}
+
+	\maketitle
+	%\tableofcontents
+
+	\section{${6}}
+
+	${7}
+
+	\end{document}
+	% vim:ft=tex.pdflatex
+snippet _article LuaLaTex
+	\documentclass[${1:11}pt,${2:german},parskip=half]{scrartcl}
+	\usepackage[german]{babel}
+
+	\usepackage{fontspec}
+	\setmainfont[Ligatures=TeX]{TeX Gyre Pagella}
+	%\setsansfont[Ligatures=TeX]{TeX Gyre Heros}
+	\setmonofont{Inconsolata}
+
+	\title{${3}}
+	\author{${4:`g:snips_author`}}
+	\date{${5:\today}}
+
+	\begin{document}
+
+	\maketitle
+	%\tableofcontents
+
+	\section{${6}}
+
+	${7}
+
+	\end{document}
+	% vim:ft=tex.lualatex
+snippet _article XeLaTex
+	\documentclass[${1:11}pt,${2:german},parskip=half]{scrartcl}
+	\usepackage[german]{babel}
+
+	\usepackage{fontspec}
+	\usepackage{lmodern,textcomp}
+
+	\title{${3}}
+	\author{${4:`g:snips_author`}}
+	\date{${5:\today}}
+
+	\begin{document}
+
+	\maketitle
+	%\tableofcontents
+
+	\section{${6}}
+
+	${7}
+
+	\end{document}
+	% vim:ft=tex.xelatex
+snippet _letter pdfLaTex
+	\documentclass[parskip=half,enlargefirstpage=on]{scrlttr2} 
+	\usepackage[utf8]{inputenc} 
+	\usepackage{ngerman} 
+	\usepackage{lmodern,textcomp}
+	\usepackage{wasysym}
+	
+	\makeatletter 
+	\@setplength{foldmarkhpos}{6mm}
+	\@setplength{firstheadvpos}{15mm}
+	\@setplength{sigbeforevskip}{17mm}
+	\makeatother 
+	
+	\renewcommand{\familydefault}{\sfdefault}
+	\renewcommand{\raggedsignature}{\raggedright}
+	
+	\setkomavar{fromname}{`g:snips_fromname`}
+	\setkomavar{fromaddress}{`g:snips_fromaddress`}
+	\setkomavar{fromphone}{`g:snips_fromphone`}
+	\setkomavar{place}{`g:snips_place`}
+	\setkomavar{date}{den \today}
+	\setkomavar{signature}{\usekomavar{fromname}} 
+
+	\firsthead{\parbox{\hsize}{
+	  \begin{center}
+	    \huge\fontfamily{phv}\fontseries{b}\fontshape{sc}\selectfont
+	    \usekomavar{fromname}\\
+	    \small\fontfamily{pag}\fontseries{m}\fontshape{sc}\selectfont
+	    \usekomavar{fromaddress} \phone{} \usekomavar{fromphone}
+	  \end{center}
+	}}
+
+	\begin{document} 
+	
+	\begin{letter}{%
+	  ${1}\\
+	  ${2}\\
+	  ${3}
+	} 
+	
+	\setkomavar{subject}{${4}} 
+	
+	\opening{Sehr geehrte${5},} 
+	
+	${6}
+
+	\closing{Mit freundlichen Grüßen}
+	
+	\end{letter} 
+	
+	\end{document} 
+	% vim:ft=tex.pdflatex
+snippet _letter LuaLaTex
+	\documentclass[parskip=half,enlargefirstpage=on]{scrlttr2} 
+	\usepackage{luaotfload}
+	\usepackage{fontspec}
+	\usepackage{ngerman} 
+	\usepackage{wasysym}
+	
+	\makeatletter 
+	\@setplength{foldmarkhpos}{6mm}
+	\@setplength{firstheadvpos}{15mm}
+	\@setplength{sigbeforevskip}{17mm}
+	\makeatother 
+	
+	\renewcommand{\familydefault}{\sfdefault}
+	\renewcommand{\raggedsignature}{\raggedright}
+	
+	\setkomavar{fromname}{`g:snips_fromname`}
+	\setkomavar{fromaddress}{`g:snips_fromaddress`}
+	\setkomavar{fromphone}{`g:snips_fromphone`}
+	\setkomavar{place}{`g:snips_place`}
+	\setkomavar{date}{den \today}
+	\setkomavar{signature}{\usekomavar{fromname}} 
+	
+	\firsthead{\parbox{\hsize}{
+	  \begin{center}
+	    \huge\fontspec{Arial Black}\selectfont
+	    \usekomavar{fromname}\\
+	    \footnotesize\fontspec{TeX Gyre Adventor}\selectfont
+	    \usekomavar{fromaddress} \phone{} \usekomavar{fromphone}
+	  \end{center}
+	}}
+	\begin{document} 
+	
+	\begin{letter}{%
+	  ${1}\\
+	  ${2}\\
+	  ${3}
+	} 
+	
+	\setkomavar{subject}{${4}} 
+	
+	\opening{Sehr geehrte${5},} 
+	
+	${6}
+
+	\closing{Mit freundlichen Grüßen}
+	
+	\end{letter} 
+	
+	\end{document} 
+	% vim:ft=tex.lualatex

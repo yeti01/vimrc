@@ -1,0 +1,97 @@
+# Java Snipptes
+snippet main
+	public static void main(String[] args)
+	{
+		${1}
+	}
+snippet class
+	public class ${1:`Filename()`}${2: extends Parent}
+	{
+		${3}
+	}
+snippet interface
+	interface ${1:`Filename()`}${2: extends Parent}
+	{
+		${3}
+	}
+snippet method
+	${1:public} ${2:void} ${3:method}(${4})
+	{
+		${5}
+	}
+snippet /*
+	/*
+	 * ${1}
+	 */
+snippet if
+	if (${1:/* condition */})
+	{
+		${2}
+	}
+snippet else
+	else
+	{
+		${1}
+	}
+snippet ?
+	${1:/* condition */} ? ${2:a} : ${3:b}
+snippet switch
+	switch (${1:/* variable */})
+	{
+		case ${2:/* variable case */}:
+			${3}
+			${4:break;}${5}
+		default:
+			${6}
+	}
+snippet case
+	case ${1:/* variable case */}:
+		${2}
+		${3:break;}
+snippet do
+	do
+	{
+		${2}
+	} while (${1:/* condition */});
+snippet while
+	while (${1:/* condition */})
+	{
+		${2}
+	}
+snippet for
+	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++})
+	{
+		${4}
+	}
+snippet assert
+	assert ${1:test} : "${2:Failure message}";${3}
+snippet try
+	try
+	{
+		${3}
+	}
+	catch (${1:Exception} ${2:e})
+	{
+		${4}
+	}
+snippet finally
+	finally
+	{
+		${1}
+	}
+snippet resultset
+	ResultSet ${1:rst}${2: = null}${3};${4}
+snippet printf
+	System.out.printf("${1:%s}\n"${2});${3}
+snippet set
+	${1:public} void set${3:Variable}(${2:String} ${4:value})
+	{
+		this.$3 = $4;
+	}${5}
+snippet get
+	${1:public} ${2:String} get${3:Variable}()
+	{
+		return this.${4:value};
+	}${5}
+snippet .
+	[${1}]${2}

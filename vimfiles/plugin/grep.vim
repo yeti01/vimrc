@@ -1,7 +1,7 @@
 " File: grep.vim
 " Author: Yegappan Lakshmanan (yegappan AT yahoo DOT com)
-" Version: 1.9
-" Last Modified: September 10, 2007
+" Version: 1.11
+" Last Modified: April 24, 2013
 " 
 " Overview
 " --------
@@ -69,26 +69,36 @@
 " :Ragrep        - Run recursive agrep
 " :RagrepAdd     - Same as ":Ragrep" but adds the results to the current
 "                  results
+" :Tcgrep        - Run tcgrep
+" :TcgrepAdd     - Same as ":Tcgrep" but adds the results to the current
+"                  results
+" :Rtcgrep       - Run recursive tcgrep
+" :RtcgrepAdd    - Same as ":Rtcgrep" but adds the results to the current
+"                  results
 "
 " The above commands can be invoked like this:
 "
-"    :Grep   [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :Rgrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :Fgrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :Rfgrep [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :Egrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :Regrep [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :Agrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :Ragrep [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Grep    [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Rgrep   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Fgrep   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Rfgrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Egrep   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Regrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Agrep   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Ragrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Tcgrep  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :Rtcgrep [<grep_options>] [<search_pattern> [<file_name(s)>]]
 "
-"    :GrepAdd   [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :RgrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :FgrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :RfgrepAdd [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :EgrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :RegrepAdd [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :AgrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
-"    :RagrepAdd [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :GrepAdd    [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :RgrepAdd   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :FgrepAdd   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :RfgrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :EgrepAdd   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :RegrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :AgrepAdd   [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :RagrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :TcgrepAdd  [<grep_options>] [<search_pattern> [<file_name(s)>]]
+"    :RtcgrepAdd [<grep_options>] [<search_pattern> [<file_name(s)>]]
 "
 "    :GrepBuffer [<grep_options>] [<search_pattern>]
 "    :Bgrep [<grep_options>] [<search_pattern>]
@@ -196,8 +206,17 @@
 "
 "       :let Agrep_Path = 'd:\tools\agrep.exe'
 "
+" The 'Tcgrep_Path' variable is used to locate the tcgrep utility. By default,
+" this is set to tcgrep. You can change this using the let command:
+"
+"       :let Tcgrep_Path = 'd:\tools\tcgrep.pl'
+"
 " The 'Grep_Find_Path' variable is used to locate the find utility. By
-" default, this is set to d:\tools\find.exe. You can change this using the let
+" default, this is set to 'find'. Note that on MS-Windows, there is a find.exe
+" that is part of the base OS. This find utility is different from the the
+" Unix find utility. You cannot use this utility with this plugin. You must
+" install the Unix compatible find utility and set the Grep_Find_Path variable
+" to point to the location of the utility. You can change this using the let
 " command:
 "
 "       :let Grep_Find_Path = 'd:\tools\find.exe'
@@ -251,13 +270,13 @@
 "
 "       :let Grep_Find_Use_Xargs = 0
 " 
-" To handle file names with space characters in them, the xargs utility
-" is invoked with the '--null' argument. If the xargs utility in your system
-" doesn't accept the '--null' argument, then you can change the
-" Grep_Xargs_Options variable. For example, to use the '--print0' xargs
-" argument, you can use the following command:
+" To handle file names with space characters in them, the xargs utility is
+" invoked with the '-0' argument. If the xargs utility in your system doesn't
+" accept the '-0' argument, then you can change the Grep_Xargs_Options
+" variable. For example, to use the '--null' xargs argument, you can use the
+" following command:
 "
-" 	:let Grep_Xargs_Options = '--print0'
+" 	:let Grep_Xargs_Options = '--null'
 "
 " The Grep_Cygwin_Find variable should be set to 1, if you are using the find
 " utility from the cygwin package. This setting is used to handle the
@@ -317,6 +336,13 @@ if !exists("Agrep_Path")
     let Agrep_Path = 'agrep'
 endif
 
+" Location of the tcgrep utility
+if !exists("Tcgrep_Path")
+    let Tcgrep_Path = '$VIM/vimfiles/tools/tcgrep.pl'
+endif
+
+let Tcgrep_Path = 'perl "' . expand(Tcgrep_Path, ":p"). '"'
+
 " Location of the find utility
 if !exists("Grep_Find_Path")
     let Grep_Find_Path = 'find'
@@ -352,7 +378,7 @@ endif
 
 " The command-line arguments to supply to the xargs utility
 if !exists('Grep_Xargs_Options')
-    let Grep_Xargs_Options = '--null'
+    let Grep_Xargs_Options = '-0'
 endif
 
 " The find utility is from the cygwin package or some other find utility.
@@ -404,7 +430,36 @@ endif
 " RunGrepCmd()
 " Run the specified grep command using the supplied pattern
 function! s:RunGrepCmd(cmd, pattern, action)
-    let cmd_output = system(a:cmd)
+    if has('win32') && !has('win32unix') && !has('win95')
+                \ && (&shell =~ 'cmd.exe')
+        " Windows does not correctly deal with commands that have more than 1
+        " set of double quotes.  It will strip them all resulting in:
+        " 'C:\Program' is not recognized as an internal or external command
+        " operable program or batch file.  To work around this, place the
+        " command inside a batch file and call the batch file.
+        " Do this only on Win2K, WinXP and above.
+        let s:grep_tempfile = fnamemodify(tempname(), ':h') . '\mygrep.cmd'
+        if v:version >= 700
+            call writefile([a:cmd], s:grep_tempfile, "b")
+        else
+            exe 'redir! > ' . s:grep_tempfile
+            silent echo a:cmd
+            redir END
+        endif
+
+	let cmd_output = system('"' . s:grep_tempfile . '"')
+    else
+        let cmd_output = system(a:cmd)
+    endif
+
+    if exists('s:grep_tempfile')
+        " Delete the temporary cmd file created on MS-Windows
+        call delete(s:grep_tempfile)
+    endif
+
+    " Do not check for the shell_error (return code from the command).
+    " Even if there are valid matches, grep returns error codes if there
+    " are problems with a few input files.
 
     if cmd_output == ""
         echohl WarningMsg | 
@@ -470,7 +525,11 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
             let pattern = g:Grep_Shell_Quote_Char . a:{argcnt} . 
                             \ g:Grep_Shell_Quote_Char
         else
-            let filepattern = filepattern . " " . a:{argcnt}
+            if filepattern != ""
+                let filepattern = filepattern . " " . a:{argcnt}
+            else
+                let filepattern = a:{argcnt}
+            endif
         endif
         let argcnt= argcnt + 1
     endwhile
@@ -481,7 +540,11 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
     if a:grep_cmd != 'agrep'
         " Don't display messages about non-existent files
         " Agrep doesn't support the -s option
-        let grep_opt = grep_opt . " -s"
+	if a:grep_cmd != 'tcgrep'
+            let grep_opt = grep_opt . " -s"
+	else
+            let grep_opt = grep_opt . " -q"
+	endif
     endif
 
     if a:grep_cmd == 'grep'
@@ -496,6 +559,9 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
     elseif a:grep_cmd == 'agrep'
         let grep_path = g:Agrep_Path
         let grep_expr_option = ''
+    elseif a:grep_cmd == 'tcgrep'
+        let grep_path = g:Tcgrep_Path
+        let grep_expr_option = ''
     else
         return
     endif
@@ -508,8 +574,13 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
         endif
         let pattern = g:Grep_Shell_Quote_Char . pattern . 
                         \ g:Grep_Shell_Quote_Char
+        echo "\r"
     endif
 
+    let shellslash_save = &shellslash
+    if g:Grep_Cygwin_Find == 1
+        set shellslash
+    endif
     let cwd = getcwd()
     if v:version >= 700
         let startdir = input("Start searching from directory: ", cwd, "dir")
@@ -519,14 +590,11 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
     if startdir == ""
         return
     endif
-
-    let startdir = substitute(startdir, "\\\\ ", " ", "g")
-    if g:Grep_Cygwin_Find == 1
-        let startdir = substitute(startdir, "\\", "/", "g")
-        let startdir = '"' . startdir . '"'
-    else
-        let startdir = escape(startdir, " ()")
+    if has("unix") || &shellslash
+        let startdir = substitute(startdir, "\\", "", "g")
     endif
+    let &shellslash = shellslash_save
+    echo "\r"
 
     if filepattern == ""
         let filepattern = input("Search in files matching pattern: ", 
@@ -534,6 +602,7 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
         if filepattern == ""
             return
         endif
+        echo "\r"
     endif
 
     let txt = filepattern . ' '
@@ -581,7 +650,7 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
     endif
 
     if g:Grep_Find_Use_Xargs == 1
-        let cmd = g:Grep_Find_Path . " " . startdir
+        let cmd = g:Grep_Find_Path . ' "' . startdir . '"'
         let cmd = cmd . " " . find_prune . " -prune -o"
         let cmd = cmd . " " . find_skip_files
         let cmd = cmd . " " . find_file_pattern
@@ -623,7 +692,14 @@ function! s:RunGrepSpecial(cmd_name, which, action, ...)
 
         while i <= last_bufno
             if bufexists(i) && buflisted(i)
-                let filenames = filenames . " " . bufname(i)
+                let fullpath = fnamemodify(bufname(i), ':p')
+                if filereadable(fullpath)
+                    if v:version >= 702
+                        let filenames = filenames . " " . fnameescape(fullpath)
+                    else
+                        let filenames = filenames . " " . fullpath
+                    endif
+                endif
             endif
             let i = i + 1
         endwhile
@@ -689,6 +765,7 @@ function! s:RunGrepSpecial(cmd_name, which, action, ...)
         if pattern == ""
             return
         endif
+        echo "\r"
     endif
 
     let pattern = g:Grep_Shell_Quote_Char . pattern . g:Grep_Shell_Quote_Char
@@ -739,7 +816,11 @@ function! s:RunGrep(cmd_name, grep_cmd, action, ...)
     if a:grep_cmd != 'agrep'
         " Don't display messages about non-existent files
         " Agrep doesn't support the -s option
-        let grep_opt = grep_opt . " -s"
+	if a:grep_cmd != 'tcgrep'
+            let grep_opt = grep_opt . " -s"
+	else
+            let grep_opt = grep_opt . " -q"
+	endif
     endif
 
     if a:grep_cmd == 'grep'
@@ -754,6 +835,9 @@ function! s:RunGrep(cmd_name, grep_cmd, action, ...)
     elseif a:grep_cmd == 'agrep'
         let grep_path = g:Agrep_Path
         let grep_expr_option = ''
+    elseif a:grep_cmd == 'tcgrep'
+        let grep_path = g:Tcgrep_Path
+        let grep_expr_option = ''
     else
         return
     endif
@@ -766,6 +850,7 @@ function! s:RunGrep(cmd_name, grep_cmd, action, ...)
         endif
         let pattern = g:Grep_Shell_Quote_Char . pattern .
                         \ g:Grep_Shell_Quote_Char
+        echo "\r"
     endif
 
     if filenames == ""
@@ -778,6 +863,7 @@ function! s:RunGrep(cmd_name, grep_cmd, action, ...)
         if filenames == ""
             return
         endif
+        echo "\r"
     endif
 
     " Add /dev/null to the list of filenames, so that grep print the
@@ -814,6 +900,10 @@ command! -nargs=* -complete=file Agrep
             \ call s:RunGrep('Agrep', 'agrep', 'set', <f-args>)
 command! -nargs=* -complete=file Ragrep
             \ call s:RunGrepRecursive('Ragrep', 'agrep', 'set', <f-args>)
+command! -nargs=* -complete=file Tcgrep
+            \ call s:RunGrep('Tcgrep', 'tcgrep', 'set', <f-args>)
+command! -nargs=* -complete=file Rtcgrep
+            \ call s:RunGrepRecursive('Rtcgrep', 'tcgrep', 'set', <f-args>)
 
 if v:version >= 700
 command! -nargs=* -complete=file GrepAdd
@@ -839,6 +929,10 @@ command! -nargs=* -complete=file AgrepAdd
             \ call s:RunGrep('AgrepAdd', 'agrep', 'add', <f-args>)
 command! -nargs=* -complete=file RagrepAdd
             \ call s:RunGrepRecursive('RagrepAdd', 'agrep', 'add', <f-args>)
+command! -nargs=* -complete=file TcgrepAdd
+            \ call s:RunGrep('TcgrepAdd', 'tcgrep', 'add', <f-args>)
+command! -nargs=* -complete=file RtcgrepAdd
+            \ call s:RunGrepRecursive('RtcgrepAdd', 'tcgrep', 'add', <f-args>)
 endif
 
 " Add the Tools->Search Files menu
