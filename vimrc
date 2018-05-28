@@ -99,7 +99,7 @@ set showcmd             " show (partial) command keys in the status line
 set novisualbell        " use a visual bell instead of beeping (no)
 
 " ----------------------------------------------------------------------------
-" 13 selecting text
+" 12 selecting text
 " ----------------------------------------------------------------------------
 set selectmode=key      " when to start Select mode instead of Visual mode
 set clipboard=unnamed   " use the * register like unnamed register
