@@ -9,7 +9,7 @@ vim offers you a lot of settings to change. And even better, there are lots of a
 
 With this collection of configuration files, I tried:
 
-* Not to overwrite standard funtionality of vim.
+* Not to overwrite standard functionality of vim.
 * To keep `vimrc` small and clean.
 * To use vim's standard concepts as much as possible.
 
@@ -27,7 +27,7 @@ For a UNIX System, it's common to have an environment variable `$VIM` that point
 In any case, no adaption of the file names or the directory name is required.
 
 ### Structure
-* Everything that is valid in general is placed in the main config file `vimrc`. Using this file only should work out of the box even on a system with a minimal vim installation.
+* Everything that is valid in general is placed in the main config file `vimrc`. Using this file only should work out of the box even on a system with a minimal vim installation but of course without any plugins installed.
 
 * Settings that depend on the graphical versions of vim (gvim, MacVim), are stored in the runtime config file `gvimrc`.
 
