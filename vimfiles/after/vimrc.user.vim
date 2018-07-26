@@ -22,9 +22,15 @@ colorscheme default
 " ----------------------------------------------------------------------------
 " 9 GUI
 " ----------------------------------------------------------------------------
-if has("gui_running") && has("win32")
+if has("gui_running")
+
+if has("win32")
     set guifont=Lucida_Console:h8       
     set linespace=3     " number of pixel lines to use between characters
+else
+    set guifont=Luxi\ Mono\ 9
+endif
+
 endif
 
 " ----------------------------------------------------------------------------
