@@ -80,7 +80,7 @@ endif
 
 " list of directories to skip while doing recursive searches
 let Grep_Skip_Dirs=
-    \'CVS .svn build .metadata'
+    \'CVS .svn .git build .metadata'
 
 " files in which to search for the pattern
 let Grep_Default_Filelist=
@@ -104,6 +104,7 @@ endif
 let g:ctrlp_user_command=s:findprg
     \. ' | ' . s:grepprg . '\CVS\'
     \. ' | ' . s:grepprg . '\.svn\'
+    \. ' | ' . s:grepprg . '\.git\'
     \. ' | ' . s:grepprg . '".sw[a-p]"'
     \. ' | ' . s:grepprg . '\.DS_Store'
     \. ' | ' . s:grepprg . '\build\'
