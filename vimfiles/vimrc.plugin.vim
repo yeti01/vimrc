@@ -12,6 +12,7 @@
 "   aftercolors         http://www.vim.org/scripts/script.php?script_id=1641
 "   dirdiff             http://www.vim.org/scripts/script.php?script_id=102
 "   visincr             http://www.vim.org/scripts/script.php?script_id=670
+"   omnicppcomplete     https://github.com/yeti01/OmniCppComplete
 "   fencview            http://www.vim.org/scripts/script.php?script_id=1708
 "   snipmate            https://github.com/yeti01/snipmate.vim
 "   ctrlp               http://www.vim.org/scripts/script.php?script_id=3736
@@ -42,6 +43,12 @@ let g:DrChipTopLvlMenu="Plugin."
 let g:sqlutil_keyword_case='\U' " case of the keywords should be changed
 let g:sqlutil_align_where=0     " used to align operators
 let g:sqlutil_align_comma=1     " force each column to be placed on a new line
+
+" ----------------------------------------------------------------------------
+" OmniCppComplete plugin
+" ----------------------------------------------------------------------------
+let OmniCpp_MayCompleteDot=0    " automatically completion after '.'
+let OmniCpp_MayCompleteArrow=0  " automatically completion after '->'
 
 " ----------------------------------------------------------------------------
 " Fencview plugin

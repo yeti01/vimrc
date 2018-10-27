@@ -8,6 +8,9 @@ if v:version >= 704
     setlocal formatoptions+=j
 endif
 
+" function for filetype-specific Insert mode completion
+call omni#cpp#complete#Init()
+
 " ----------------------------------------------------------------------------
 " 15 tabs and indenting
 " ----------------------------------------------------------------------------
