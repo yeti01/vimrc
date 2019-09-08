@@ -13,6 +13,7 @@ exe "set path+=".path_save
 " ----------------------------------------------------------------------------
 " list of file names to search for tags
 set tags+=$HOME/Sites/myProject/tags
+set tags+=$VIM/vim-cpp-stl/tags
 
 " ----------------------------------------------------------------------------
 " 5 syntax, highlighting and spelling

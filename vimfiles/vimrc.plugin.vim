@@ -47,8 +47,9 @@ let g:sqlutil_align_comma=1     " force each column to be placed on a new line
 " ----------------------------------------------------------------------------
 " OmniCppComplete plugin
 " ----------------------------------------------------------------------------
-let OmniCpp_MayCompleteDot=0    " automatically completion after '.'
-let OmniCpp_MayCompleteArrow=0  " automatically completion after '->'
+let OmniCpp_MayCompleteDot=0    " automatically completion after '.' (no)
+let OmniCpp_MayCompleteArrow=0  " automatically completion after '->' (no)
+let OmniCpp_DefaultNamespaces=["std"] 	" default namespace list
 
 " ----------------------------------------------------------------------------
 " Fencview plugin
