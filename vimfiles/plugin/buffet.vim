@@ -289,6 +289,7 @@ function! s:toggle(gotolastbuffer)
 	map <buffer> <silent> <2-leftrelease> :call <sid>loadbuffer(0)<cr>
 	nnoremap <buffer> <silent> <C-R> :call <sid>loadbuffer(0)<cr>
 	nnoremap <buffer> <silent> <C-M> :call <sid>loadbuffer(0)<cr>
+	nnoremap <buffer> <silent> <CR> :call <sid>loadbuffer(0)<cr>
 	nnoremap <buffer> <silent> x :call <sid>closewindow(0)<cr>
 	nnoremap <buffer> <silent> X :call <sid>closewindow(1)<cr>
 	nnoremap <buffer> <silent> c :call <sid>cleardiff()<cr>

@@ -23,7 +23,7 @@ set spelllang+=de       " list of accepted languages
 if has("gui_running")
     set background=light
     colorscheme macvim
-elseif ($TERM == "xterm-256color")
+elseif ($TERM == "xterm-256color" && $COLORTERM != "truecolor")
     set t_Co=256
     set background=light
     colorscheme solarized
@@ -44,7 +44,7 @@ if has("win32")
 elseif has("mac")
     set guifont=Menlo\ Regular:h12
 else
-    set guifont=Luxi\ Mono\ 9
+    set guifont=Monospace\ 9
 endif
 
 endif

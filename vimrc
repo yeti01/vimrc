@@ -192,6 +192,7 @@ nmap <F7>               :set spell!<CR>:set spell?<CR>
 
 " jump to tag
 nnoremap <C-]>          g<C-]>
+nnoremap <C-+>          g<C-]>
 nnoremap <C-LeftMouse>  g<C-]>
 " $ defaults write org.vim.MacVim MMTranslateCtrlClick 0
 
