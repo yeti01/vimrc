@@ -5,7 +5,11 @@
 "CompilerSet makeprg=pdftex\ -fmt=latex
 
 " LuaLaTeX
-CompilerSet makeprg=luatex\ -fmt=lualatex
+if executable("luahbtex")
+    CompilerSet makeprg=luahbtex\ -fmt=lualatex
+else
+    CompilerSet makeprg=luatex\ -fmt=lualatex
+endif
 
 " XeLaTeX
 "CompilerSet makeprg=xetex\ -fmt=xelatex
