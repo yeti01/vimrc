@@ -9,6 +9,9 @@ augroup filetypedetect
 " Apache
 autocmd! BufNewFile,BufRead */apache2*/*.conf*  setfiletype apache.xml
 
+" Twig
+autocmd! BufNewFile,BufRead *.twig              setfiletype twig
+
 " Excel
 autocmd! BufNewFile,BufRead *.csv               setfiletype sql
 

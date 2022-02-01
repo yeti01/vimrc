@@ -17,6 +17,7 @@
 "   snipmate            https://github.com/yeti01/snipmate.vim
 "   ctrlp               http://www.vim.org/scripts/script.php?script_id=3736
 "   buffet              https://github.com/yeti01/buffet.vim
+"   twig                https://github.com/evidens/vim-twig
 
 " ----------------------------------------------------------------------------
 " 2. Color schemes
