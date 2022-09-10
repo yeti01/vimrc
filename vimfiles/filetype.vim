@@ -4,6 +4,9 @@ if exists("did_load_filetypes")
     finish
 endif
 
+" POSIX shell
+let g:is_posix=1
+
 augroup filetypedetect
 
 " Apache
