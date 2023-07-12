@@ -35,7 +35,9 @@ autocmd! BufNewFile,BufRead *.m                 setfiletype objc
 autocmd! BufNewFile,BufRead *.p                 setfiletype pascal
 
 " Plant UML
-autocmd! BufRead,BufNewFile *.uml               setfiletype plantuml
+autocmd! BufRead,BufNewFile *.pu,*.*uml
+        \ if getline(1) =~# '@startuml\>'     | setfiletype plantuml |
+        \ endif
 
 " Spice
 autocmd! BufNewFile,BufRead *.cir               setfiletype spice
