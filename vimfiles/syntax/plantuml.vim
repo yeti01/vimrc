@@ -23,9 +23,9 @@ syntax sync minlines=100
 syntax match plantumlPreProc /\%(^@startuml\|^@enduml\)\|!\%(include\|ifdef\|define\|endif\)\s*.*/ contains=plantumlDir
 syntax region plantumlDir start=/\s\+/ms=s+1 end=/$/ contained
 
-syntax keyword plantumlTypeKeyword namespace component package interface class interface enum object participant activity skinparam abstract
+syntax keyword plantumlTypeKeyword start stop namespace component package interface class interface enum object participant activity skinparam abstract
 syntax keyword plantumlKeyword actor boundary control entity database partition title activate as deactivate note left right top bottom of end
-syntax keyword plantumlKeyword if then else endif
+syntax keyword plantumlKeyword if then else endif repeat while
 
 syntax keyword plantumlCommentTODO XXX TODO FIXME NOTE contained
 syntax match plantumlColor /#[0-9A-Fa-f]\{6\}\>/
