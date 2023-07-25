@@ -4,7 +4,7 @@
 " directory names used for file searching
 let path_save=&path
 
-set path=$HOME/Sites/myProject/**
+set path=$HOME/Projects/myProject/**
 
 exe "set path+=".path_save
 
@@ -12,7 +12,7 @@ exe "set path+=".path_save
 " 3 tags
 " ----------------------------------------------------------------------------
 " list of file names to search for tags
-set tags+=$HOME/Sites/myProject/tags
+set tags+=$HOME/Projects/myProject/tags
 set tags+=$VIM/vim-cpp-stl/tags
 
 " ----------------------------------------------------------------------------
@@ -91,7 +91,7 @@ let Grep_Default_Filelist=
 " CtrlP plugin
 " ----------------------------------------------------------------------------
 " set the default opening command to use
-let g:ctrlp_cmd='CtrlP $HOME/Sites/myProject'
+let g:ctrlp_cmd='CtrlP $HOME/Projects/myProject'
 
 " specify an external tool to use for listing files
 if has("win32")
