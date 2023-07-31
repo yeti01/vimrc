@@ -3,14 +3,16 @@ syn case ignore
 " Keywords
 syn keyword sqlKeyword      after aggregate authorization cache cascade
 syn keyword sqlKeyword      collate collation conflict connection constraint
-syn keyword sqlKeyword      database debug each external foreign inner
-syn keyword sqlKeyword      join key left minvalue maxvalue object off outer
-syn keyword sqlKeyword      references referencing release right role schema
-syn keyword sqlKeyword      primary transaction unique virtual
+syn keyword sqlKeyword      contract conversation database debug each external
+syn keyword sqlKeyword      foreign inner join key left minvalue maxvalue
+syn keyword sqlKeyword      message next object off outer references referencing
+syn keyword sqlKeyword      release right role schema service primary
+syn keyword sqlKeyword      transaction unique virtual
 
 " Operators
-syn keyword sqlOperator     case elif else end from if is match matches regexp
-syn keyword sqlOperator     then versions when where on
+syn keyword sqlOperator     break case close declare deallocate elif else end
+syn keyword sqlOperator     exec fetch from if is match matches on open receive
+syn keyword sqlOperator     regexp send then versions when where while
 syn match   sqlOperator     "||\|:="
 
 " Functions

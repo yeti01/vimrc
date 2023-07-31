@@ -13,6 +13,7 @@
 "   dirdiff             http://www.vim.org/scripts/script.php?script_id=102
 "   visincr             http://www.vim.org/scripts/script.php?script_id=670
 "   omnicppcomplete     https://github.com/yeti01/OmniCppComplete
+"   tags for std c++    http://www.vim.org/scripts/script.php?script_id=2358
 "   fencview            http://www.vim.org/scripts/script.php?script_id=1708
 "   snipmate            https://github.com/yeti01/snipmate.vim
 "   ctrlp               http://www.vim.org/scripts/script.php?script_id=3736
@@ -50,7 +51,7 @@ let g:sqlutil_align_comma=1     " force each column to be placed on a new line
 " ----------------------------------------------------------------------------
 let OmniCpp_MayCompleteDot=0    " automatically completion after '.' (no)
 let OmniCpp_MayCompleteArrow=0  " automatically completion after '->' (no)
-let OmniCpp_DefaultNamespaces=["std"] 	" default namespace list
+let OmniCpp_DefaultNamespaces=["std"] " default namespace list
 
 " ----------------------------------------------------------------------------
 " Fencview plugin
