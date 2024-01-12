@@ -18,6 +18,10 @@ autocmd! BufNewFile,BufRead *.twig              setfiletype twig
 " Excel
 autocmd! BufNewFile,BufRead *.csv               setfiletype sql
 
+" Gnuplot
+autocmd! BufNewFile,BufRead *.gnu               setfiletype gnuplot
+autocmd! BufNewFile,BufRead *.gp                setfiletype gnuplot
+
 " TeX
 autocmd! BufNewFile,BufRead *.tex               setfiletype tex
 autocmd! BufNewFile,BufRead *.lco               setfiletype tex
