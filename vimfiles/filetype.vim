@@ -12,6 +12,9 @@ augroup filetypedetect
 " Apache
 autocmd! BufNewFile,BufRead */apache2*/*.conf*  setfiletype apache.xml
 
+" Samba
+autocmd! BufNewFile,BufRead */etc/smb*.conf*    setfiletype samba
+
 " Twig
 autocmd! BufNewFile,BufRead *.twig              setfiletype twig
 
