@@ -49,6 +49,12 @@ autocmd! BufRead,BufNewFile *.pu,*.*uml
 " Spice
 autocmd! BufNewFile,BufRead *.cir               setfiletype spice
 
+autocmd! BufNewFile,BufRead *.net               setfiletype spice
+
+autocmd! BufRead,BufNewFile *.lib
+        \ if getline(1) =~# '^* '             | setfiletype spice |
+        \ endif
+
 " NEC2
 autocmd! BufNewFile,BufRead *.nec               setfiletype nec
 
